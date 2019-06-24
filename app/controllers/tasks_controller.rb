@@ -24,13 +24,17 @@ class TasksController < ApplicationController
   end
 
   def update
-  task = Task.find(params[:id])
-  task.update({
+    task = Task.find(params[:id])
+    task.update({
     title: params[:task][:title],
     description: params[:task][:description]
     })
-  task.save
-  redirect_to "/tasks/#{task.id}"
+    task.save
+    redirect_to "/tasks/#{task.id}"
   end
 
+  def destroy
+    Task.destroy(params[:id])
+    redirect_to '/tasks'
+  end
 end
